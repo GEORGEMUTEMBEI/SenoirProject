@@ -116,39 +116,40 @@ def send_mail():
 
     server = smtplib.SMTP('smtp.gmail.com',587)
     server.starttls()
-    server.login('enter your mail','enter your password')
+    server.login('mutembeig8@gmail.com','Eng123.GM')
     for email in absent_student_emails:
-        server.sendmail('enter your mail',
+        server.sendmail('mutembeig8@gmail.com',
                     email,
-                    'You are absent')
+                    'Hello Dear Student, You are absent on class today.\n\n\nThis is an auto generated message, please do not reply.\n George Mutembei')
 
     print("Email sent successfully")
 
     lecture_email = get_lecture_email()
     msg = EmailMessage()
     msg['Subject'] = 'Attendance Details'
-    msg['From'] = 'enter your email'
+    msg['From'] = 'mutembeig8@gmail.com'
     msg['To'] = lecture_email
     msg.set_content('Attendance Report Attached')
 
-    csv_name = generate_attendance_sheet()
+    '''csv_name = generate_attendance_sheet()
     with open(csv_name,'rb') as f:
         file_data = f.read()
         file_type = 'csv'
-        file_name = f.name
+        file_name = f.name'''
 
 
-    msg.add_attachment(file_data,maintype='file',subtype=file_type,filename=file_name)
+    msg.add_attachment('D:/SenoirProject/smart/Attendance_Details/attendance.csv')
+    attach = ('Attendance_Details/attendance.csv')
 
     with smtplib.SMTP_SSL('smtp.gmail.com',465) as smtp:
-        smtp.login('enter your email','enter your password')
+        smtp.login('mutembeig8@gmail.com','Eng123.GM')
         smtp.send_message(msg)
 
     print("Report sent successfully")
 
 
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(send_mail,'cron',day_of_week='mon-sun', hour=16, minute=10)
+sched.add_job(send_mail,'cron',day_of_week='mon-sun', hour=13, minute=42)
 sched.start()
 
 

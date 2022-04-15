@@ -735,7 +735,7 @@ def login():
                             
                         dic = {'name': all_name, 'date': all_date, 'time': all_time, 'status': all_status}
                         df = pd.DataFrame(dic)
-                        df_csv = df.to_csv('D:/SeniorProject/smart/Attendance_Details/attendance.csv')
+                        df_csv = df.to_csv('D:/SenoirProject/smart/Attendance_Details/attendance.csv')
                         messagebox.showinfo('Success', 'Attendance Report Eported Successfully \n Check The file Here \n D:/SeniorProject/smart/Attendance_Details/attendance.csv ') 
 
 
@@ -746,7 +746,7 @@ def login():
                         cur = conn.cursor()
                         selected_item = report_table.selection()[0]
                         uid = report_table.item(selected_item)['values'][0]
-                        print("UID is ",uid)
+                        print("Student report Of ID",uid, " is deleted Successfully")
                         cur.execute('delete from report where id = %s',(uid))
                         conn.commit()
                         report_table.delete(selected_item)
