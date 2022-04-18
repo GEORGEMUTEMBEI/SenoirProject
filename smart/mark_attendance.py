@@ -1,4 +1,4 @@
-##import csv
+import csv
 import cv2
 class Mark_Attendance:
     def __init__(self,csv_filename):
