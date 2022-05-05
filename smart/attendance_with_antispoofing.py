@@ -308,10 +308,12 @@ def login():
                                                     ques = messagebox.askyesno("Notification","Photo samples for this student did not exist in local directory. Please delete the entry from the database", parent = attendance)
                                                     if (ques == True):
                                                         delete()
+                                                        messagebox.showinfo("Success","Data Deleted successfully")
+                                                    elif(ques == False):
+                                                        update()
                                                         messagebox.showinfo("Success","Database Updated successfully")
                                                     else:
-                                                        delete()
-                                                        messagebox.showinfo("Success","Database Updated successfully")
+                                                        exit()
                                             else:
                                                 messagebox.showerror('Error','Please Enter the Valid Email Address', parent = first)
                                         else:
@@ -598,7 +600,7 @@ def login():
                                     conn.commit()
                                     messagebox.showinfo("Success","Hello {}.Your attendance has been recorded successfully".format(final_name))
                         else:
-                            messagebox.showinfo("Error","{}.Spoofing attempted".format(final_name))
+                            messagebox.showinfo("Error","{}.Spoofing attempted \nATTENDANCE NOT RECORDED".format(final_name))
 
                     else:
                         messagebox.showerror("Error","Model file not found. Embeddings.pickle file and Recognizer.pickle file must exist within models directory.")

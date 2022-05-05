@@ -151,7 +151,7 @@ def send_mail():
 
 
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(send_mail,'cron',day_of_week='mon-sun', hour=11, minute=49)
+sched.add_job(send_mail,'cron',day_of_week='mon-sun', hour=10, minute=41)
 sched.start()
 
 
